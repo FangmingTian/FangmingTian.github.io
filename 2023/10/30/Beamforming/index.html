@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="keywords" content="hexo, autumn" />
+    <title>
+        田芳铭
+    </title>
+    <!-- favicon -->
+    
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/favicon.ico" />
+     
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- highlight -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/github-gist.min.css" />
+    <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad()
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/frontendsophie/hexo-infinite-scroll@2.0.0/dist/main.js"></script>
+
+    <script>
+        infiniteScroll()
+
+        window.addEventListener('DOMContentLoaded', function () {
+            const [
+                mainTitle,
+                mobileMenu,
+                mobileMainTitle,
+                mobileMenuBtn,
+                ipadMenuBtn,
+                aside,
+                closeBtn,
+            ] = getEle(
+                '#main-title',
+                '.mobile-menu',
+                '.mobile-menu h3',
+                '.mobile-menu button',
+                '.ipad-menu',
+                'aside',
+                'aside .close',
+            )
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].intersectionRatio <= 0) {
+                    mobileMainTitle.classList.remove('invisibile')
+                } else {
+                    mobileMainTitle.classList.add('invisibile')
+                }
+            })
+            io.observe(mainTitle)
+
+            clickToggleAside(mobileMenuBtn)
+            clickToggleAside(ipadMenuBtn)
+            clickToggleAside(closeBtn, false)
+
+            const isMenuVisible = window.getComputedStyle(mobileMenu).display !== 'none'
+            if (isMenuVisible) document.body.style.background = 'none'
+
+            function getEle(...args) {
+                return args.map(arg => document.querySelector(arg))
+            }
+
+            function clickToggleAside(btn, show = true) {
+                btn.addEventListener('click', function () {
+                    if (show) {
+                        aside.style.display = 'block'
+                    } else {
+                        aside.style.display = 'none'
+                    }
+                })
+            }
+        })
+    </script>
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="田芳铭" type="application/atom+xml">
+</head>
+
+<body style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+    <div class="container">
+        <header class="header">
+    <nav class="mobile-menu" style="background: url(https://cdn.jsdelivr.net/gh/frontendsophie/hexo-theme-autumn@1.0.0/source/img/button-bg.png) #f3f3f3">
+        <h3 class="invisibile">
+            <a href="/" class="logo">
+                田芳铭
+            </a>
+        </h3>
+        <button class="menu">menu</button>
+    </nav>
+
+    <button class="ipad-menu menu">menu</button>
+
+    <h1 class="title" id="main-title">
+        <a href="/" class="logo">
+            田芳铭
+        </a>
+    </h1>
+    <h2 class="desc">
+        Doris的个人博客
+    </h2>
+
+    <div class="links">
+        <ul>
+            
+            <li>
+                <a target="_blank" rel="noopener" href="https://github.com/FrontendSophie">
+                    Github
+                </a>
+            </li>
+            
+            <li>
+                <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/frontendsophie/">
+                    LinkedIn
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</header>
+        <main class="main">
+            <article class="post">
+    
+    
+    
+    <h2 class="post-title">
+        Beamforming
+    </h2>
+    <ul class="post-date">
+        <li>
+            2023-10-30
+        </li>
+        <li>
+            Doris
+        </li>
+    </ul>
+    <div class="post-content">
+        <h1 id="波束成形"><a href="#波束成形" class="headerlink" title="波束成形"></a>波束成形</h1><p><a target="_blank" rel="noopener" href="https://markdown.lovejade.cn/?utm_source=markdown.lovejade.cn">波束成形技术（Beamforming）</a>，是将信号以一种能量集中和定向方式发送给无线终端的技术，能全面改善无线终端接收的信号质量，并提升吞吐量。</p>
+<hr>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>波束成形从字面理解就是塑造波束的形状，那么如何塑造出波束的形状呢？以光束为例，用一个手电筒打出一道光束，光束的形状是固定的。如果在平行方向增加一个手电筒，则会发现两道光束叠加后，光束亮度增加，光束形状发生了变化。如果继续增加手电筒的数量，光束的亮度继续增加，叠加后的光束形状也继续变化。在多个手电筒的情况下，改变手电筒的开关状态或调整发光的强弱，也会影响光束的形状。<br>对于无线通信，天线就相当于手电筒，无线信号的波束就相当于光束，通过多个天线，控制每个天线发射的信号，就可以改变无线信号的波束形状。<br>在多天线系统中，如果不同天线传输的信号在到达某一位置时存在两条衰减相同的波束，且两条波束相位相反，就可能会出现空间空洞。波束成形技术可以通过预先补偿发射天线的相位，让两条波束进行叠加以实现信号增强的效果。（如下图）<br><img src="https://download.huawei.com/mdl/image/download?uuid=42ba17cb0861481a8bd543a5c305804e"><br>波束成形怎么知道该如何调整发射天线的信号呢？这是通过检测信道状态信息CSI（Channel State Information）来获取并计算出调整参数的。</p>
+<p>按照CSI获取方式的不同，波束成形可以分为显示波束成形（Explicit beamforming）和隐式波束成形（Implicit beamforming）。</p>
+<h3 id="显式波束成形"><a href="#显式波束成形" class="headerlink" title="显式波束成形"></a>显式波束成形</h3><p>显式波束成形是一种需要STA（无线终端）反馈信道信息的波束成形方式。显式波束成形信道信息的探测和反馈流程如下：<br><img src="https://download.huawei.com/mdl/image/download?uuid=ce4ca84ccf474ba9a92d1f94fb6210bb"></p>
+<ol>
+<li>AP向STA发送探测数据（Training Symbol）。在802.11n标准中，AP发送探测数据包括空数据包（NDP）和交错前导码两种方式；802.11ac标准则直接使用NDP的方式。<ul>
+<li>NDP是一种没有数据的空帧，其没有负荷。AP向STA发送NDP探测通告和空数据包，STA收到探测通告和空数据包后进行信道信息反馈。</li>
+<li>交错前导码是利用发送的带有负荷的帧实现探测，这个帧会承载一个MAC帧和探测信道。</li>
+</ul>
+</li>
+<li>STA向AP反馈信道信息。<br>在802.11n标准中，STA的信道信息反馈有三种方式：<ul>
+<li>CSI方式：STA将原始的信道信息直接发送给AP，由AP计算最终的波束成形权重值。</li>
+<li>非压缩波束成形权重值：STA收到探测后，由STA计算出波束成形权重之后反馈给AP。这种方式会增加系统开销，因此有了压缩波束成形权重值。</li>
+<li>压缩波束成形权重值：同样是STA计算出波束成形权重值后反馈给AP，并且通过一些方法降低了系统开销。802.11ac标准开始，STA采用压缩波束成形权重值的方式反馈信道信息。在802.11ac标准中，显式压缩反馈的开销非常大。为了减少波束成形的复杂程度，波束成形探测方式只支持NDP，反馈方式只支持compressed V matrix。</li>
+<li>compressed V matrix：预定的第一个接受者STA收到探测后，从NDP的前导序列测量出原始的CSI压缩后使用VHt压缩反馈帧反馈给AP，并由A计算出权重值进行波束成形；知乎AP会发送Poll采用轮询的方式使其他节点发送反馈帧。这是802.11ac、802.11ax独有的方式，与802.11n不兼容。</li>
+</ul>
+</li>
+<li>AP根据STA反馈或自己计算的权重信息进行波束成形，多径信号在STA处汇聚，形成增益。</li>
+</ol>
+<h3 id="隐式波束成形"><a href="#隐式波束成形" class="headerlink" title="隐式波束成形"></a>隐式波束成形</h3><p><img src="https://bbs-img.huaweicloud.com/blogs/img/1565578430506199.png" alt="image.png"></p>
+<p>发射端AP向接收端STA发送探测请求，STA收到探测请求后发送探测相应帧，AP在收到探测相应帧后，完成从STA到AP的信道信息评估，并根据两个传输方向的信道互易性（即认为同频段的上下行的信道状态信息是相等的），将STA反馈的上行接收方向信道信息直接应用于下行发送方向。从802.11ac协议开始已经明确不再支持隐式波束成形且业界也基本无厂商实现该方式波束成形。</p>
+<h2 id="Wi-Fi为什么要用波束成形"><a href="#Wi-Fi为什么要用波束成形" class="headerlink" title="Wi-Fi为什么要用波束成形"></a>Wi-Fi为什么要用波束成形</h2><p>Wi-Fi标准一直致力于提升无限的传输速率，尤其是从Wi-Fi 4（802.11n）开始引入了MIMO和波束成形技术，让传输速率提升到了数百兆，提升了1个量级。<br>MIMO技术通过多天线传输，带来传输速率的成倍增长。但在实际应用中STA往往只有1到2个天线，这使得STA发送和接收信号的收益有所差异。STA向AP发送信号时，AP可以利用自己的多天线系统增强接受收益，活得更好的信号强度；AP向STA发送信号时，如果仅使用对应数量的天线发送信号，则无法利用多天线带来的增益。为了解决这一问题，通过引入波束成形技术，可以增强STA接收到的信号强度，从而使AP和STA可以协商出更高的传输速率。<br>为了充分利用AP的资源，Wi-Fi 5（802.11ac）又引入了MU-MIMO技术，使AP可以同时向多个STA发送信号，有效提升了无限的传输速率。MU-MIMO也需要波束成形技术，波束成形使AP的多天线信号叠加后，让各STA仅收到自己的信号，消除其他STA的信号，避免干扰。Wi-Fi 6（802.11ax）在Wi-Fi 5的技术上进一步增加了MU-MIMO的多用户数量，这些都离不开波束成形技术的使用。</p>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>波束成形就是通过对信道进行探测并反馈接收矩阵，再根据矩阵进行预编码以精确控制发送的能量至指定客户端的技术。</p>
+
+    </div>
+</article>
+        </main>
+        <aside class="aside">
+            <div class="close"></div>
+            <section class="aside-section">
+                
+    <h1>Categories</h1>
+
+    
+
+            </section>
+            <section class="aside-section">
+                
+    <h1>Archives</h1>
+
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li></ul>
+
+
+            </section>
+            <section class="aside-section tag">
+                
+    <h1>Tags</h1>
+
+    
+
+            </section>
+        </aside>
+    </div>
+</body>
+
+</html>
