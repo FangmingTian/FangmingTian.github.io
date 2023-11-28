@@ -124,30 +124,25 @@
     
     
     <h2 class="post-title">
-        Hello World
+        Wi-Fi Sensing
     </h2>
     <ul class="post-date">
         <li>
-            2023-10-23
+            2023-11-28
         </li>
         <li>
             Doris
         </li>
     </ul>
     <div class="post-content">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h1 id="Wi-Fi人体传感基础"><a href="#Wi-Fi人体传感基础" class="headerlink" title="Wi-Fi人体传感基础"></a>Wi-Fi人体传感基础</h1><p>首先引入一个Wi-Fi传感系统，该系统包含<strong>AP</strong>和用户设备(<strong>UE</strong>)对，旨在感知人体主体的物理运动，用<em>S</em>表示。在𝑡时刻，将AP与<em>S</em>之间的距离用$𝑑_{A, S}(t)$表示，将<em>S</em>与UE之间的距离用$d_{S, E}(t)$表示。进一步关注<em>S</em>的影响，我们将AP和UE之间的无线信道增益建模为:</p>
+<p>$h_{A, E}(t) = h_{A, S, E}(t) + h_{A, E}^S + h_{A, E}^D(t)$</p>
+<p>其中$h_{A, E}^S$和$h_{A, E}^D(t)$分别表示AP和UE之间由于直接通信路径和沿该路径的干扰运动而产生的静态信道增益和动态信道增益，$h_{A, S, E}(t)$表示AP经过S反射到UE的信道增益，可以表示为：</p>
+<p>$h_{A, S, E}(t) = \frac{\lambda^2\sqrt{G_{A, S, E}}exp(-i2\pi(d_{A, S}(t) + d_{S, E}(t)) / \lambda}{(4\pi)^2(d_{A, S}(t)d_{S, E}(t))^{\alpha/2}}$</p>
+<p>式中，λ为载波波长，$G_{A, S, E}$为天线增益Tx和Rx与S反射系数的乘积，$\alpha$为路径损耗指数。通常情况下，对于室内环境，则采用$\alpha$∈[2,4]，$\alpha$≈4。因此，Wi-Fi人体传感可以描述为：人体主体的身体运动导致$𝑑_{A, S}(t)$和$d_{S, E}(t)$的变化，进而导致信道增益$h_{A, S, E}(t)$随时间的变化。因此，通过分析从Wi-Fi帧的CSI中得到的$h_{A, S, E}(t)$的时间序列，AP和UE都能感知到<em>S</em>的运动。</p>
+<blockquote>
+<p>Jingzhi Hu, Tianyue Zheng, Zhe Chen, Hongbo Wang, and Jun Luo. 2023. MUSE-Fi: Contactless MUti-person SEnsing Exploiting Near-field Wi-Fi Channel Variation. In Proceedings of the 29th Annual International Conference on Mobile Computing and Networking (ACM MobiCom ‘23). Association for Computing Machinery, New York, NY, USA, Article 75, 1–15. <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3570361.3613290">https://doi.org/10.1145/3570361.3613290</a></p>
+</blockquote>
 
     </div>
 </article>
